@@ -215,11 +215,12 @@ builder.defineCatalogHandler(async ({ type, id, extra = {}, config }) => {   con
   return { metas };
 });
 
-builder.defineMetaHandler(async ({ id }) => {
+builder.defineMetaHandler(async ({ id, config }) => {
+  const apiKey = getApiKey(config);
   const match = /^(movie|tv):(\d+)$/.exec(id);
   if (!match) return { meta: null };
   const kind = match[1];
-  const item = await tmdb(`/${kind}/${match[2]}`, { append_to_response:"external_ids" });
+  const item = await tmdb(`/${kind}/${match[2]}`, apiKey, { append_to_response:"external_ids" });
   const meta = await toMeta(item, kind === "movie" ? "movie" : "series");
   const imdbId = item.imdb_id || item.external_ids?.imdb_id;
   if (imdbId) meta.id = imdbId;
