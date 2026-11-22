@@ -1,29 +1,70 @@
-# Marvel Universe – Stremio Add-on
+# Marvel Universe for Stremio
 
-Marvel-catalogus voor Stremio Discover met films, series, themacollecties en MCU-kijkvolgorde.
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Ronkruyt/marvel-universe-stremio/main/marvel-universe-logo.png" alt="Marvel Universe logo" width="420">
+</p>
 
-## Catalogi
-- Marvel – Alle films / alle series
-- MCU – Chronologische volgorde (films)
-- MCU – Chronologische volgorde (series)
-- MCU – Releasevolgorde (films en series)
-- Spider-Man, X-Men, Avengers, Guardians of the Galaxy, Fantastic Four en Marvel Animation
+<p align="center">
+  A community catalog add-on for discovering Marvel movies and series in Stremio.
+</p>
 
-**Waarom twee chronologische catalogi?** Stremio vereist dat iedere catalogus één inhoudstype heeft (`movie` of `series`). Daarom staan MCU-films en MCU-series in aparte catalogi. Samen vormen ze de kijklijst; Stremio kan ze niet als één gemengde catalogus rangschikken.
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Ronkruyt/marvel-universe-stremio/main/marvel-universe-background.png" alt="Marvel Universe artwork" width="100%">
+</p>
 
-## Installeren
-1. Installeer Node.js 18 of hoger.
-2. Vraag een TMDB API-key aan: https://www.themoviedb.org/settings/api
-3. Pak de ZIP uit en open een terminal in de map.
-4. Voer `npm install` uit.
-5. Kopieer `.env.example` naar `.env` en vul `TMDB_API_KEY=...` in.
-6. Start met `npm start`.
-7. Open in Stremio `http://127.0.0.1:7000/manifest.json` en installeer de add-on.
+## Features
 
-De lokale add-on werkt zolang de computer waarop hij draait aanstaat. Voor gebruik op al je apparaten moet je hem hosten op een Node.js-server met HTTPS en daar `TMDB_API_KEY` als environment variable instellen.
+- Marvel movie and series catalogs
+- MCU movie chronology and MCU series chronology
+- MCU release-order catalogs
+- Collections for Spider-Man, X-Men, Avengers, Guardians of the Galaxy, Fantastic Four and Marvel Animation
+- Each Stremio user enters their own TMDB API key in the add-on configuration
 
-## Belangrijk
-- Dit is een catalogus- en metadata-add-on, geen videostream-add-on.
-- Afspelen gebeurt via je bestaande Stremio-stream-add-ons.
-- De chronologie is een samengestelde kijkvolgorde. Sommige MCU-titels, met name multiverse-verhalen en series, hebben geen eenduidige plek in de tijdlijn. De lijst kan worden bijgewerkt wanneer Marvel nieuwe titels uitbrengt.
-- Metadata, posters en omschrijvingen komen van TMDB.
+## Install in Stremio
+
+1. Open the [Marvel Universe add-on manifest](https://marvel-universe-stremio.onrender.com/manifest.json).
+2. Install the add-on in Stremio.
+3. When prompted, enter your own **TMDB API Key (v3)**.
+4. Finish the installation and open **Discover** in Stremio. Look under **Movies** or **Series** for the Marvel catalogs.
+
+**Install URL:**
+`https://marvel-universe-stremio.onrender.com/manifest.json`
+
+## Get your own TMDB API key
+
+1. Create a free account at [The Movie Database (TMDB)](https://www.themoviedb.org/).
+2. Open [TMDB API settings](https://www.themoviedb.org/settings/api).
+3. Request an API key if you do not already have one.
+4. Copy the **API Key (v3 auth)** and enter it in the Marvel Universe add-on configuration in Stremio.
+
+Use your own key. Do not share it publicly.
+
+## What this add-on does
+
+Marvel Universe provides catalogs and metadata for Stremio Discover. It does **not** provide video streams or host movie/episode files. Playback is handled by the streaming add-ons you have installed separately.
+
+Metadata, artwork and descriptions are retrieved from TMDB.
+
+## MCU viewing order
+
+The movie and series timelines are separate catalogs because Stremio catalogs support one content type at a time (`movie` or `series`). To follow the combined MCU timeline, use both chronology catalogs.
+
+## Privacy and API key
+
+Your TMDB API key is entered into Stremio's add-on configuration and is used by the add-on server to request metadata from TMDB on your behalf. Only enter a key you are comfortable using with this community add-on. Keep your key private and do not post it in issues, screenshots or public messages.
+
+## Run locally (development)
+
+Requirements: Node.js 18 or newer.
+
+```bash
+npm install
+npm start
+```
+
+Then open `http://127.0.0.1:7000/manifest.json` in Stremio and configure your own TMDB API key when prompted.
+
+## Credits
+
+- [TMDB](https://www.themoviedb.org/) provides the movie and television metadata.
+- This project is an independent community add-on and is not affiliated with or endorsed by Marvel, Disney or TMDB.
