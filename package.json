@@ -1,0 +1,10 @@
+{
+  "name": "marvel-universe-stremio-addon",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Marvel movies and series catalogs for Stremio Discover",
+  "main": "addon.js",
+  "scripts": { "start": "node addon.js" },
+  "dependencies": { "stremio-addon-sdk": "^1.6.10" },
+  "engines": { "node": ">=18" }
+}
