@@ -5,6 +5,7 @@ const BASE = "https://api.themoviedb.org/3";
 const IMG = "https://image.tmdb.org/t/p/w500";
 
 const catalogs = [
+  ["movie","marvel_featured","Marvel Universe – Uitgelicht","movie"],
   ["movie","marvel_movies","Marvel – Alle films","movie"],
   ["series","marvel_series","Marvel – Alle series","tv"],
   ["movie","mcu_chronological","MCU – Chronologische volgorde (films)","movie"],
