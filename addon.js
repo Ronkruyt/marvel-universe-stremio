@@ -1,14 +1,8 @@
 const { addonBuilder, serveHTTP } = require("stremio-addon-sdk");
 
-const API_KEY = process.env.TMDB_API_KEY;
 const PORT = Number(process.env.PORT || 7000);
 const BASE = "https://api.themoviedb.org/3";
 const IMG = "https://image.tmdb.org/t/p/w500";
-
-if (!API_KEY) {
-  console.error("Missing TMDB_API_KEY. Copy .env.example to .env and add your TMDB API key.");
-  process.exit(1);
-}
 
 const catalogs = [
   ["movie","marvel_movies","Marvel – Alle films","movie"],
@@ -30,7 +24,7 @@ const catalogs = [
 
 const manifest = {
   id: "community.marvel.universe.catalog",
-  version: "1.1.0",
+  version: "1.2.0",
   name: "Marvel Universe",
   description: "Marvel-films en -series met MCU-kijkvolgorde en themacollecties. Catalogus-add-on; streams komen van je andere Stremio-add-ons.",
   resources: ["catalog", "meta"],
@@ -39,18 +33,49 @@ const manifest = {
     type, id, name,
     extra: [{ name: "search", isRequired: false }]
   })),
-  behaviorHints: { configurable: false }
+config: [
+  {
+    key: "tmdbApiKey",
+    type: "password",
+    title: "Jouw TMDB API Key (v3)",
+    required: true
+  }
+],
+behaviorHints: {
+  configurable: true,
+  configurationRequired: true
+}
 };
 
 const builder = new addonBuilder(manifest);
 
-async function tmdb(path, params = {}) {
+function getApiKey(config) {
+  const apiKey = config && config.tmdbApiKey;
+
+  if (!apiKey || !String(apiKey).trim()) {
+    throw new Error("TMDB API-key ontbreekt. Vul je eigen TMDB API Key in bij de instellingen van Marvel Universe.");
+  }
+
+  return String(apiKey).trim();
+}
+
+async function tmdb(path, apiKey, params = {}) {
   const url = new URL(BASE + path);
-  url.searchParams.set("api_key", API_KEY);
+  url.searchParams.set("api_key", apiKey);
   url.searchParams.set("language", "nl-NL");
-  for (const [k,v] of Object.entries(params)) if (v !== undefined && v !== null) url.searchParams.set(k, String(v));
+
+  for (const [k,v] of Object.entries(params)) {
+    if (v !== undefined && v !== null) {
+      url.searchParams.set(k, String(v));
+    }
+  }
+
   const res = await fetch(url);
-  if (!res.ok) throw new Error(`TMDB API ${res.status}: ${await res.text()}`);
+
+  if (!res.ok) {
+    throw new Error(`TMDB API ${res.status}: ${await res.text()}`);
+  }
+
   return res.json();
 }
 
