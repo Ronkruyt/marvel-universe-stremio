@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marvel Universe for Stremio</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: white;
+  background: #100808;
+  text-align: center;
+}
+.hero {
+  padding: 55px 20px 70px;
+  background:
+    linear-gradient(rgba(10,0,0,.35),rgba(10,0,0,.85)),
+    url('https://raw.githubusercontent.com/Ronkruyt/marvel-universe-stremio/main/marvel-universe-background.png')
+    center/cover;
+}
+.logo { max-width: 420px; width: 90%; }
+h1 { font-size: 38px; margin: 25px 0 12px; }
+p { color: #ddd; line-height: 1.7; }
+.button {
+  display: inline-block;
+  margin: 15px 8px;
+  padding: 17px 30px;
+  border-radius: 7px;
+  background: #c51d18;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+.button:hover { background: #ed3025; }
+section { padding: 35px 20px; }
+.features {
+  max-width: 850px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+  gap: 18px;
+}
+.feature {
+  padding: 22px;
+  background: #241313;
+  border: 1px solid #63301d;
+  border-radius: 10px;
+}
+h2 { color: #e5ad45; }
+footer { padding: 25px; color: #999; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <img class="logo"
+  src="https://raw.githubusercontent.com/Ronkruyt/marvel-universe-stremio/main/marvel-universe-logo.png"
+  alt="Marvel Universe">
+
+  <h1>MARVEL UNIVERSE</h1>
+  <p>Discover the Marvel Universe in Stremio.</p>
+  <p>Films, series and complete MCU viewing orders in one catalog.</p>
+
+  <a class="button"
+  href="stremio://marvel-universe-stremio.onrender.com/manifest.json">
+  INSTALL IN STREMIO
+  </a>
+</div>
+
+<section>
+  <h2>Explore the Marvel Universe</h2>
+  <div class="features">
+    <div class="feature">
+      <h2>Marvel Movies</h2>
+      <p>Discover Marvel films in one convenient catalog.</p>
+    </div>
+    <div class="feature">
+      <h2>Marvel Series</h2>
+      <p>Explore Marvel television series.</p>
+    </div>
+    <div class="feature">
+      <h2>MCU Timeline</h2>
+      <p>Watch the Marvel Cinematic Universe in chronological order.</p>
+    </div>
+    <div class="feature">
+      <h2>Release Order</h2>
+      <p>Explore films and series in release order.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>How to install</h2>
+  <p>1. Open the installation link in Stremio.</p>
+  <p>2. Enter your own TMDB API Key (v3).</p>
+  <p>3. Add Marvel Universe and start exploring!</p>
+  <p><a class="button"
+  href="https://www.themoviedb.org/settings/api">
+  Get your TMDB API Key
+  </a></p>
+</section>
+
+<footer>
+  Marvel Universe for Stremio · Community Add-on · Version 1.5.0
+  <p>This add-on provides catalogs and metadata, not video streams.</p>
+</footer>
+
+</body>
+</html>
