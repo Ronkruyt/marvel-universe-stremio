@@ -137,7 +137,7 @@ const mcuSeriesOrder = [
   "Daredevil: Born Again"
 ];
 
-const config = {
+const catalogConfig = {
   marvel_movies: { kind:"movie", companies:"420|7505" },
   marvel_series: { kind:"tv", companies:"420|7505" },
   mcu_release: { kind:"movie", companies:"420", sort_by:"primary_release_date.asc" },
