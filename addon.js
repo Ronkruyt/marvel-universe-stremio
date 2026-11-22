@@ -189,28 +189,36 @@ builder.defineCatalogHandler(async ({ type, id, extra = {}, config: userConfig }
     const titles = id === "mcu_chronological" ? mcuMovieOrder : mcuSeriesOrder;
     const found = await Promise.all(titles.map(t => searchTitle(t, kind, apiKey).catch(() => null)));
     results = found.filter(Boolean);
+  
   } else if (extra.search) {
-    const data = await tmdb(`/search/${kind === "movie" ? "movie" : "tv"}`, apiKey, { === "movie" ? "movie" : "tv"}`, {
-      query:extra.search, page:1, include_adult:false
+    const data = await tmdb(`/search/${kind === "movie" ? "movie" : "tv"}`, apiKey, {
+      query: extra.search,
+      page: 1,
+      include_adult: false
     });
     results = data.results || [];
   } else {
     const cfg = catalogConfig[id];
+    if (!cfg) return { metas: [] };
+
     if (cfg.query) {
-      const data = await tmdb(`/search/${kind === "movie" ? "movie" : "tv"}`, apiKey, { === "movie" ? "movie" : "tv"}`, apiKey, { === "movie" ? "movie" : "tv"}`, {
-        query:cfg.query, page:1, include_adult:false
+      const data = await tmdb(`/search/${kind === "movie" ? "movie" : "tv"}`, apiKey, {
+        query: cfg.query,
+        page: 1,
+        include_adult: false
       });
       results = data.results || [];
     } else {
-      const data = await tmdb(`/search/${kind === "movie" ? "movie" : "tv"}`, apiKey, { === "movie" ? "movie" : "tv"}`, {
+      const data = await tmdb(`/discover/${kind === "movie" ? "movie" : "tv"}`, apiKey, {
         with_companies: cfg.companies,
         sort_by: cfg.sort_by || "popularity.desc",
-        include_adult:false,
-        page:1
+        include_adult: false,
+        page: 1
       });
       results = data.results || [];
     }
   }
+
 
   const metas = await Promise.all(results.slice(0,100).map(x => toMeta(x, kind)));
   return { metas };
