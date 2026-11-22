@@ -178,7 +178,8 @@ async function toMeta(item, kind) {
   };
 }
 
-builder.defineCatalogHandler(async ({ type, id, extra = {}, config }) => {   const apiKey = getApiKey(config);
+builder.defineCatalogHandler(async ({ type, id, extra = {}, config: userConfig }) => {
+  const apiKey = getApiKey(userConfig);
   const entry = catalogs.find(c => c[0] === type && c[1] === id);
   if (!entry) return { metas: [] };
   const kind = entry[3];
@@ -189,19 +190,19 @@ builder.defineCatalogHandler(async ({ type, id, extra = {}, config }) => {   con
     const found = await Promise.all(titles.map(t => searchTitle(t, kind, apiKey).catch(() => null)));
     results = found.filter(Boolean);
   } else if (extra.search) {
-    const data = await tmdb(`/search/movie`, apiKey, {${kind === "movie" ? "movie" : "tv"}`, {
+    const data = await tmdb(`/search/${kind === "movie" ? "movie" : "tv"}`, apiKey, { === "movie" ? "movie" : "tv"}`, {
       query:extra.search, page:1, include_adult:false
     });
     results = data.results || [];
   } else {
-    const cfg = config[id];
+    const cfg = catalogConfig[id];
     if (cfg.query) {
-      const data = await tmdb(`/search/movie`, apiKey, {${kind === "movie" ? "movie" : "tv"}`, {
+      const data = await tmdb(`/search/${kind === "movie" ? "movie" : "tv"}`, apiKey, { === "movie" ? "movie" : "tv"}`, apiKey, { === "movie" ? "movie" : "tv"}`, {
         query:cfg.query, page:1, include_adult:false
       });
       results = data.results || [];
     } else {
-      const data = await tmdb(`/search/movie`, apiKey, {${kind === "movie" ? "movie" : "tv"}`, {
+      const data = await tmdb(`/search/${kind === "movie" ? "movie" : "tv"}`, apiKey, { === "movie" ? "movie" : "tv"}`, {
         with_companies: cfg.companies,
         sort_by: cfg.sort_by || "popularity.desc",
         include_adult:false,
