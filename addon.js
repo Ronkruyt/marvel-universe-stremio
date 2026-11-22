@@ -25,11 +25,11 @@ const catalogs = [
 
 const manifest = {
   id: "community.marvel.universe.catalog",
-  version: "1.4.0",
+  version: "1.5.0",
   name: "Marvel Universe",
   description: "Marvel-films en -series met MCU-kijkvolgorde en themacollecties. Catalogus-add-on; streams komen van je andere Stremio-add-ons.",
   logo: "https://raw.githubusercontent.com/Ronkruyt/marvel-universe-stremio/main/marvel-universe-logo.png",
-  background: "https://raw.githubusercontent.com/Ronkruyt/marvel-universe-stremio/main/marvel-universe-logo.png",
+  background: "https://raw.githubusercontent.com/Ronkruyt/marvel-universe-stremio/main/marvel-universe-background.png",
   resources: ["catalog", "meta"],
   types: ["movie", "series"],
   catalogs: catalogs.map(([type,id,name]) => ({
